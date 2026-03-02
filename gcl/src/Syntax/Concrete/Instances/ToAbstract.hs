@@ -5,6 +5,7 @@
 {-# LANGUAGE KindSignatures #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE UndecidableInstances #-}
+{-# LANGUAGE InstanceSigs #-}
 
 module Syntax.Concrete.Instances.ToAbstract where
 
@@ -32,6 +33,7 @@ type HoleCount = Int
 type AbstractTransformerM = State HoleCount
 
 instance Counterous AbstractTransformerM where
+  countUp :: AbstractTransformerM Int
   countUp = do
     holeCount <- get
     put (succ holeCount)
